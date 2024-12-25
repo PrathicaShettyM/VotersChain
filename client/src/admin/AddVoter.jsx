@@ -29,7 +29,7 @@ const AddVoter = () => {
     <form
   onSubmit={handleSubmit}
   className="min-h-screen flex items-center justify-center bg-gray-100"
->
+  >
   <div className="p-6 bg-white shadow-lg rounded-lg space-y-4 max-w-md w-full border-2 border-black">
     <h1 className='font-bold text-center text-3xl text-cyan-950'>Register Voter</h1>
     <div>

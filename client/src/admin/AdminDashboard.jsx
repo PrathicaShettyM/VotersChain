@@ -37,21 +37,21 @@ const AdminDashboard = () => {
             <div className="bg-white shadow-lg rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4 text-gray-800">Voters</h2>
               <p className="text-gray-600">View voter details.</p>
-              <Link to="/admin/view-voter" className="text-blue-500 hover:underline">View Voters</Link>
+              <Link to="/admin/view-voters" className="text-blue-500 hover:underline">View Voters</Link>
             </div>
 
             {/* Candidates Section */}
             <div className="bg-white shadow-lg rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4 text-gray-800">Candidates</h2>
               <p className="text-gray-600">View candidate profiles.</p>
-              <Link to="/admin/view-candidate" className="text-blue-500 hover:underline">View Candidates</Link>
+              <Link to="/admin/view-candidates" className="text-blue-500 hover:underline">View Candidates</Link>
             </div>
 
             {/* Election Details Section */}
             <div className="bg-white shadow-lg rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4 text-gray-800">Election Details</h2>
               <p className="text-gray-600">Set the date, start, and end time for elections.</p>
-              <Link to="/admin/view-election" className="text-blue-500 hover:underline">View Election Details</Link>
+              <Link to="/admin/view-elections" className="text-blue-500 hover:underline">View Election Details</Link>
             </div>
 
             {/* Results Section */}

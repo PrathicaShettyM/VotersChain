@@ -5,101 +5,77 @@ const AddCandidate = () => {
   const [formData, setFormData] = useState({
     ethereumAddress: '',
     name: '',
-    partyAffiliation: '',
+    party_affiliation: '',
     bio: '',
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.ethereumAddress) {
+      alert('Ethereum Address is required.');
+      return;
+  }
     try {
-      const response = await axiosInstance.post('/admin/add-candidate', formData);
-      alert(`Success: ${response.data.message}`);
-      setFormData({
-        ethereumAddress: '',
-        name: '',
-        partyAffiliation: '',
-        bio: '',
-      });
+      const response = await axiosInstance.post('/admin/register-candidate', formData);
+      alert(response.data.message);
     } catch (error) {
-      alert(`Error: ${error.response?.data?.message || 'An unexpected error occurred'}`);
+      alert('Error registering candidate: ' + error.response?.data?.message);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <form
-        onSubmit={handleSubmit}
-        className="p-6 bg-white shadow-lg rounded-lg space-y-4 max-w-md w-full border-2 border-black"
-      >
-        <h2 className="text-2xl font-bold text-center text-cyan-950">Register Candidate</h2>
-        <div>
-          <label htmlFor="ethereumAddress" className="block text-sm font-medium text-gray-700">
-            Ethereum Address
-          </label>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <form onSubmit={handleSubmit} className="w-full max-w-lg p-6 bg-white rounded shadow-md border-black border-2">
+        <h2 className="text-2xl font-bold mb-4 text-center text-cyan-950">Add Candidate</h2>
+        <div className="mb-4">
+          <label className="block text-gray-700" htmlFor='ethereumAddress'>Ethereum Address</label>
           <input
             type="text"
             name="ethereumAddress"
             id="ethereumAddress"
             value={formData.ethereumAddress}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter Ethereum address"
+            className="w-full px-3 py-2 border rounded-md"
             required
           />
         </div>
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Name
-          </label>
+        <div className="mb-4">
+          <label className="block text-gray-700">Name</label>
           <input
             type="text"
             name="name"
-            id="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter candidate's name"
+            className="w-full px-3 py-2 border rounded-md"
             required
           />
         </div>
-        <div>
-          <label htmlFor="partyAffiliation" className="block text-sm font-medium text-gray-700">
-            Party Affiliation (optional)
-          </label>
+        <div className="mb-4">
+          <label className="block text-gray-700">Party Affiliation</label>
           <input
             type="text"
-            name="partyAffiliation"
-            id="partyAffiliation"
-            value={formData.partyAffiliation}
+            name="party_affiliation"
+            value={formData.party_affiliation}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter party affiliation (optional)"
+            className="w-full px-3 py-2 border rounded-md"
           />
         </div>
-        <div>
-          <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
-            Bio (optional)
-          </label>
+        <div className="mb-4">
+          <label className="block text-gray-700">Bio</label>
           <textarea
             name="bio"
-            id="bio"
             value={formData.bio}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter candidate's bio (optional)"
-          />
+            className="w-full px-3 py-2 border rounded-md"
+          ></textarea>
         </div>
         <button
           type="submit"
-          className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600"
+          className="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
         >
           Add Candidate
         </button>
