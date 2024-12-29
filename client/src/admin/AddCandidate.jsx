@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axiosInstance from '../axiosInstance';
 
-const AddCandidate = () => {
+function AddCandidate(){
   const [formData, setFormData] = useState({
     ethereumAddress: '',
     name: '',

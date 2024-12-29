@@ -1,6 +1,6 @@
-import Navbar from '../components/Navbar'; // Import your Navbar
-import Footer from '../components/Footer'; // Import your Footer
-import heroImage from '../assets/heroImg.jpg'; // Import your image
+import Navbar from '../components/Navbar'; 
+import Footer from '../components/Footer'; 
+import heroImage from '../assets/heroImg.jpg'; 
 import {Link} from 'react-router-dom';
 
 function Home() {

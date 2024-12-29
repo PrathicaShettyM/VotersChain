@@ -46,23 +46,11 @@ function Navbar() {
             <Link to="/aboutus" className="block py-2 md:inline-block hover:text-gray-300">
               AboutUs
             </Link>
-            <Link to="/results" className="block py-2 md:inline-block hover:text-gray-300">
+            <Link to="/results/12345" className="block py-2 md:inline-block hover:text-gray-300">
               Results
-            </Link>
-            <Link to="/candidates" className="block py-2 md:inline-block hover:text-gray-300">
-              Candidates
-            </Link>
-            <Link to="/elections" className="block py-2 md:inline-block hover:text-gray-300">
-              Elections
-            </Link>
-            <Link to="/profile" className="block py-2 md:inline-block hover:text-gray-300">
-              Profile
             </Link>
             <Link to="/login" className="block py-2 md:inline-block hover:text-gray-300">
               Login
-            </Link>
-            <Link to="/logout" className="block py-2 md:inline-block hover:text-gray-300">
-              Logout
             </Link>
           </div>
         </div>

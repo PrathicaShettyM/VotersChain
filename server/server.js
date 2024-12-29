@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const jwt = require('jsonwebtoken');
 const app = express();
+require('dotenv').config();
 
 // Middleware
 app.use(bodyParser.json());
@@ -30,7 +31,7 @@ const AdminSchema = new mongoose.Schema({
 });
 const Admin = mongoose.model('Admin', AdminSchema);
 
-// Seed Admin
+// Seed Admin directly
 const seedAdmin = async () => {
   try {
     const existingAdmin = await Admin.findOne({ email: 'admin@gmail.com' });
@@ -44,22 +45,40 @@ const seedAdmin = async () => {
 };
 seedAdmin();
 
-// 1. Register Admin Login
+// Login route for both Admin and Voters
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
+    // Check if the user is an admin
     const admin = await Admin.findOne({ email, password });
-    if (!admin) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+    if (admin) {
+      return res.status(200).json({
+        message: 'Login successful as admin',
+        redirectTo: '/admin/dashboard',
+      });
     }
-    res.status(200).json({
-      message: 'Login successful',
-      redirectTo: '/admin/dashboard',
-    });
+
+    // Check if the user is a voter
+    const Voter = require('./models/voter');
+    const voter = await Voter.findOne({ email, password });
+    if (voter) {
+      const token = jwt.sign({ id: voter._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Use a secure JWT secret
+      console.log('Token:', token);
+      return res.status(200).json({
+        message: 'Login successful',
+        token,
+        redirectTo: '/voter/vote',
+      });
+    }
+
+    // If neither admin nor voter
+    return res.status(401).json({ message: 'Invalid email or password' });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 // 2. Register Voters
 const voterRoutes = require('./routes/voter.routes');
@@ -77,6 +96,15 @@ app.use('/', electionRoutes);
 const blockchainCandidatesRoutes = require('./routes/blockchaincandidates.routes');
 app.use('/', blockchainCandidatesRoutes);
 
+// 6. Voting page routes
+const votingpage = require('./routes/votingpage.routes');
+app.use('/', votingpage)
+
+const votes = require('./routes/vote.routes')
+app.use('/', votes)
+
+const sendEmail = require('./routes/email.routes');
+app.use('/', sendEmail);
 
 // Start Server
 const PORT = 5001;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axiosInstance from '../axiosInstance';
 
-const AddElection = () => {
+function AddElection(){
   const [formData, setFormData] = useState({
     name: '',
     description: '',

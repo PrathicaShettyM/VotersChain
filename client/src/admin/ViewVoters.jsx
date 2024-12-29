@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../axiosInstance';
 
-const ViewVoters = () => {
+function ViewVoters(){
   const [voters, setVoters] = useState([]);
   const [error, setError] = useState(null);
 

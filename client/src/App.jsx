@@ -9,13 +9,20 @@ import AddElection from './admin/AddElection';
 import NotFound from './pages/NotFound';
 import ViewCandidates from './admin/ViewCandidates';
 import ViewElection from './admin/ViewElection';
+import VotingPage from './voter/VotingPage';
+import ResultsPage from './pages/Results';
+import AboutUs from './pages/AboutUs';
 
 function App() {
   return(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/aboutus" element={<AboutUs/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/results/:electionId" element={<ResultsPage/>} />
+            <Route path="*" element={<NotFound />} />
+
 
             <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
 
@@ -28,8 +35,9 @@ function App() {
             <Route path="/admin/register-election" element={<AddElection/>}/>
             <Route path="/admin/view-elections" element={<ViewElection/>}/>
 
-            <Route path="*" element={<NotFound />} />
-            
+            <Route path="/admin/results/:electionId" element={<ResultsPage/>} />
+
+            <Route path="/voter/vote" element={<VotingPage/>}/>
           </Routes>
         </BrowserRouter>
       );

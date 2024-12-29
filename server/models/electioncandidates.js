@@ -5,6 +5,7 @@ const electionCandidateSchema = new mongoose.Schema({
   address: { type: String, required: true },
   name: { type: String, required: true },
   party: { type: String, required: true },
+  voteCount: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model("electionCandidate", electionCandidateSchema, "electioncandidates");

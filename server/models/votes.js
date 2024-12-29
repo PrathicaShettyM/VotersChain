@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const VotesSchema = new mongoose.Schema({
-    electionId: { type: mongoose.Schema.Types.ObjectId, ref: "Election", required: true },
-    candidateId: { type: mongoose.Schema.Types.ObjectId, ref: "Candidate", required: true },
+    electionId: { type: String, ref: "Election", required: true },
+    candidateId: { type: String, ref: "Candidate", required: true },
     voterEthereumAddress: { type: String, required: true },
     timestamp: { type: Date, default: Date.now },
   }, { timestamps: true });

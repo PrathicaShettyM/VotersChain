@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../axiosInstance';
 
-const ViewElection = () => {
+function ViewElection(){
   const [election, setElection] = useState([]);
   const [error, setError] = useState(null);
 

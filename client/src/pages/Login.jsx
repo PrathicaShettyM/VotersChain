@@ -12,13 +12,21 @@ const Login = () => {
       // Use the axiosInstance for the API call
       const response = await axiosInstance.post('/login', { email, password });
       alert(response.data.message);
+      
+      // Store token if provided (for voters)
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
+  
+      // Redirect after login based on the response
       if (response.data.redirectTo) {
-        window.location.href = response.data.redirectTo; // Redirect to dashboard
+        window.location.href = response.data.redirectTo;
       }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred.');
     }
   };
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
