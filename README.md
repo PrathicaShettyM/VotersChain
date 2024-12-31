@@ -8,7 +8,6 @@ VotersChain is a robust, decentralized voting system designed to ensure secure, 
 
 ### 1. 🔐 **Login for Voters and Admin**
    - Unified login interfaces for voters and administrators.
-   - Authentication and authorization using JWT tokens.
 
 ### 2. 🔒 **Role-Based Authentication**
    - Role-based access control to ensure only authorized actions are performed.
@@ -75,91 +74,53 @@ VotersChain is a robust, decentralized voting system designed to ensure secure, 
 ## ⚡️ Installation and Setup
 
 ### Prerequisites
-- **Node.js** (v14+)
+- **Node.js** (v22)
 - **MongoDB**
 - **Hardhat**
-- **npm** or **yarn**
+- **npm** 
 
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/voterschain.git
+   git clone https://github.com/PrathicaShettyM/VotersChain.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd voterschain
+   cd VotersChain
    ```
 3. Install dependencies for both the frontend and backend:
    ```bash
-   cd frontend
+   cd client
    npm install
 
-   cd ../backend
+   cd smartcontract
+   npm install
+   
+   cd ../../backend
    npm install
    ```
 4. Configure environment variables for the backend:
    - Create a `.env` file in the `backend` directory with the following keys:
      ```env
-     MONGO_URI=<your_mongodb_connection_string>
      JWT_SECRET=<your_jwt_secret>
      EMAIL_USER=<your_email_address>
-     EMAIL_PASS=<your_email_password>
+     EMAIL_PASS=<your_email_password> use google app protection's password
      ```
 5. Start the MongoDB server.
 6. Deploy smart contracts using Hardhat:
    ```bash
-   cd blockchain
+   cd smartcontract
    npx hardhat deploy
    ```
 7. Start the backend server:
    ```bash
-   cd backend
-   npm start
+   cd server
+   nodemon server.js
    ```
 8. Start the frontend server:
    ```bash
-   cd frontend
-   npm start
+   cd client
+   npm run dev
    ```
-
+   
 ---
-
-## 🔄 Project Structure
-```
-├── blockchain
-│   ├── contracts
-│   ├── scripts
-│   └── hardhat.config.js
-├── backend
-│   ├── routes
-│   ├── controllers
-│   ├── models
-│   └── server.js
-├── frontend
-│   ├── src
-│   ├── components
-│   ├── pages
-│   └── App.js
-```
-
----
-
-## 📢 Contributing
-We welcome contributions to enhance the features and functionality of VotersChain. Please submit a pull request with a detailed description of your changes.
-
----
-
-## 📈 License
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
----
-
-## 🛠️ Contact
-For queries or support, reach out to: [your-email@example.com].
-
----
-
-### 📋 Note
-This README is self-contained and can be copy-pasted directly into your project's `README.md` file without any formatting issues.
-
-
